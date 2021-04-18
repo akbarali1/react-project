@@ -1,5 +1,6 @@
 import React from 'react';
 import {API_URL,API_V1} from './Config';
+import { Link } from 'react-route';
 
 class Blog extends React.Component {
   state = {
@@ -37,7 +38,9 @@ class Blog extends React.Component {
         <div className="col-md-4" key={item.id}>
           <div className="card card-blog">
             <div className="card-img">
-              <a href="blog-single.html"><img src={API_URL+"blog/"+item.photo} alt="" className="img-fluid" /></a>
+             <Link to="/blog">
+               <img src={API_URL+"blog/"+item.photo} alt="" className="img-fluid" />
+            </Link>
             </div>
             <div className="card-body">
               <div className="card-category-box">
