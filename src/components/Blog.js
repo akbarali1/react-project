@@ -1,5 +1,7 @@
 import React from "react";
 import { API_URL, API_V1 } from "./Config";
+import Header from './Header';
+import Footer from './Footer';
 
 export default class Blog extends React.Component {
   state = {
@@ -13,84 +15,30 @@ export default class Blog extends React.Component {
         this.setState({ Maqola: data });
       });
     }
+    
   render() {
+    if (this.state.Maqola.error !== 'Bunday maqola mavjud emas') {
     return (
       <>
-        <nav
-          className="navbar navbar-b navbar-trans navbar-expand-md fixed-top"
-          id="mainNav"
-        >
-          <div className="container">
-            <a className="navbar-brand js-scroll" href="/#home">
-              Bosh sahifa
-            </a>
-            <button
-              className="navbar-toggler collapsed"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarDefault"
-              aria-controls="navbarDefault"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span></span>
-              <span></span>
-              <span></span>
-            </button>
-            <div
-              className="navbar-collapse collapse justify-content-end"
-              id="navbarDefault"
-            >
-              <ul className="navbar-nav">
-                <li className="nav-item">
-                  <a className="nav-link js-scroll" href="/#">
-                    About
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link js-scroll" href="/#">
-                    Services
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link js-scroll" href="/#">
-                    Work
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link js-scroll" href="/#">
-                    Blog
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link js-scroll" href="/#">
-                    Contact
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-
+       <Header />
         <div
           className="intro intro-single route bg-image"
           style={{
             backgroundImage: `url(${API_URL}/overlay-bg.jpg)`,
-          }}
-        >
+          }}>
           <div className="overlay-mf"></div>
           <div className="intro-content display-table">
             <div className="table-cell">
               <div className="container">
-                <h2 className="intro-title mb-4">Blog Details</h2>
+                <h2 className="intro-title mb-4">{this.state.Maqola.name}</h2>
                 <ol className="breadcrumb d-flex justify-content-center">
                   <li className="breadcrumb-item">
                     <a href="/#">Home</a>
                   </li>
                   <li className="breadcrumb-item">
-                    <a href="/#">Library</a>
+                    <a href="/#">Maqolalar</a>
                   </li>
-                  <li className="breadcrumb-item active">Data</li>
+                  <li className="breadcrumb-item active">{this.state.Maqola.name}</li>
                 </ol>
               </div>
             </div>
@@ -102,86 +50,45 @@ export default class Blog extends React.Component {
             <div className="row">
               <div className="col-md-8">
                 <div className="post-box">
-                  {/* <div className="post-thumb">
-                    <img src="img/post-1.jpg" className="img-fluid" alt="" />
-                  </div> */}
+                   <div className="post-thumb">
+                    <img
+                          src={API_URL + this.state.Maqola.author_photo}
+                          alt={this.state.Maqola.name}
+                          className="img-fluid"
+                        />
+                  </div> 
                   <div className="post-meta">
-                    {this.state.Maqola.map((item) => (
-                    <h1 className="article-title" key={item.id}>
-                      {item.name}
+                  
+                    <h1 className="article-title">
+                    {this.state.Maqola.name}
                     </h1>
-                        ))}
+                      
                     <ul>
                       <li>
                         <span className="ion-ios-person"></span>
-                        <a href="/#">Jason London</a>
+                        <a href="/#">  {this.state.Maqola.author}</a>
                       </li>
                       <li>
                         <span className="ion-pricetag"></span>
-                        <a href="/#">Web Design</a>
+                        <a href="/#">  {this.state.Maqola.cat_name}</a>
                       </li>
                       <li>
-                        <span className="ion-chatbox"></span>
-                        <a href="/#">14</a>
+                        <span className="ion-chatbox"></span> 
+                        <a href="/#"> 0</a>
                       </li>
                     </ul>
                   </div>
                   <div className="article-content">
                     <p>
-                      Mauris blandit aliquet elit, eget tincidunt nibh pulvinar
-                      a. Cras ultricies ligula sed magna dictum porta. Quisque
-                      velit nisi, pretium ut lacinia in, elementum id enim.
-                      Praesent sapien massa, convallis a pellentesque nec,
-                      egestas non nisi. Vestibulum ante ipsum primis in faucibus
-                      orci luctus et ultrices posuere cubilia Curae; Donec velit
-                      neque, auctor sit amet aliquam vel, ullamcorper sit amet
-                      ligula. Nulla quis lorem ut libero malesuada feugiat.
-                    </p>
-                    <p>
-                      Nulla porttitor accumsan tincidunt. Cras ultricies ligula
-                      sed magna dictum porta. Mauris blandit aliquet elit, eget
-                      tincidunt nibh pulvinar a. Cras ultricies ligula sed magna
-                      dictum porta. Lorem ipsum dolor sit amet, consectetur
-                      adipiscing elit. Donec sollicitudin molestie malesuada.
-                    </p>
-                    <p>
-                      Mauris blandit aliquet elit, eget tincidunt nibh pulvinar
-                      a. Lorem ipsum dolor sit amet, consectetur adipiscing
-                      elit. Praesent sapien massa, convallis a pellentesque nec,
-                      egestas non nisi. Lorem ipsum dolor sit amet, consectetur
-                      adipiscing elit. Curabitur arcu erat, accumsan id
-                      imperdiet et, porttitor at sem. Donec rutrum congue leo
-                      eget malesuada.
-                    </p>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Nulla quis lorem ut libero malesuada feugiat. Curabitur
-                      arcu erat, accumsan id imperdiet et, porttitor at sem.
-                      Vivamus suscipit tortor eget felis porttitor volutpat.
-                      Vivamus suscipit tortor eget felis porttitor volutpat.
-                      Quisque velit nisi, pretium ut lacinia in, elementum id
-                      enim.
-                    </p>
-                    <blockquote className="blockquote">
-                      <p className="mb-0">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Integer posuere erat a ante.
-                      </p>
-                    </blockquote>
-                    <p>
-                      Nulla porttitor accumsan tincidunt. Cras ultricies ligula
-                      sed magna dictum porta. Mauris blandit aliquet elit, eget
-                      tincidunt nibh pulvinar a. Cras ultricies ligula sed magna
-                      dictum porta. Lorem ipsum dolor sit amet, consectetur
-                      adipiscing elit. Donec sollicitudin molestie malesuada.
+                    {this.state.Maqola.info}
                     </p>
                   </div>
                 </div>
                 <div className="box-comments">
                   <div className="title-box-2">
-                    <h4 className="title-comments title-left">Comments (34)</h4>
+                    <h4 className="title-comments title-left">Comments (0)</h4>
                   </div>
-                  <ul className="list-comments">
+                  {/* <ul className="list-comments">
                     <li>
                       <div className="comment-avatar">
                         <img src="img/testimonial-2.jpg" alt="" />
@@ -246,7 +153,7 @@ export default class Blog extends React.Component {
                         <a href="3">Reply</a>
                       </div>
                     </li>
-                  </ul>
+                  </ul> */}
                 </div>
                 <div className="form-comments">
                   <div className="title-box-2">
@@ -379,31 +286,6 @@ export default class Blog extends React.Component {
                     </ul>
                   </div>
                 </div>
-                <div className="widget-sidebar widget-tags">
-                  <h5 className="sidebar-title">Tags</h5>
-                  <div className="sidebar-content">
-                    <ul>
-                      <li>
-                        <a href="/#">Web.</a>
-                      </li>
-                      <li>
-                        <a href="/#">Design.</a>
-                      </li>
-                      <li>
-                        <a href="/#">Travel.</a>
-                      </li>
-                      <li>
-                        <a href="/#">Photoshop</a>
-                      </li>
-                      <li>
-                        <a href="/#">Corel Draw</a>
-                      </li>
-                      <li>
-                        <a href="/#">JavaScript</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -416,26 +298,18 @@ export default class Blog extends React.Component {
           }}
         >
           <div className="overlay-mf"></div>
-          <footer>
-            <div className="container">
-              <div className="row">
-                <div className="col-sm-12">
-                  <div className="copyright-box">
-                    <p className="copyright">
-                      &copy; Copyright <strong>DevFolio</strong>. All Rights
-                      Reserved
-                    </p>
-                    <div className="credits">
-                      Designed by{" "}
-                      <a href="https://bootstrapmade.com/">BootstrapMade</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </footer>
+         <Footer />
         </section>
       </>
     );
+  }else{
+ //   console.log(this.state.Maqola.error);
+      return (
+        <>
+        <p>Bunday maqola mavjud emas</p>
+        </>
+      );
   }
+}
+
 }

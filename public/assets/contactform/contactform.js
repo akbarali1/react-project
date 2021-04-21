@@ -98,18 +98,19 @@ jQuery(document).ready(function($) {
       type: "POST",
       url: action,
       data: str,
+      dataType: 'json',
       success: function(msg) {
         // alert(msg);
-        if (msg == 'OK') {
+        if (msg.success == 'OK') {
           $("#sendmessage").addClass("show");
           $("#errormessage").removeClass("show");
           $('.contactForm').find("input, textarea").val("");
+          $("#contactform").remove();
         } else {
           $("#sendmessage").removeClass("show");
           $("#errormessage").addClass("show");
           $('#errormessage').html(msg);
         }
-
       }
     });
     return false;
