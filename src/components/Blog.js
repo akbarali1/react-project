@@ -84,13 +84,13 @@ export default class Blog extends React.Component {
                       <p>{this.state.Maqola.info}</p>
                     </div>
                   </div>
-                  <div className="box-comments">
-                    <div className="title-box-2">
+                  {/* <div className="box-comments">
+                    {/* <div className="title-box-2">
                       <h4 className="title-comments title-left">
                         Comments (0)
                       </h4>
-                    </div>
-                    {/* <ul className="list-comments">
+                    </div> 
+                     <ul className="list-comments">
                     <li>
                       <div className="comment-avatar">
                         <img src="img/testimonial-2.jpg" alt="" />
@@ -155,7 +155,7 @@ export default class Blog extends React.Component {
                         <a href="3">Reply</a>
                       </div>
                     </li>
-                  </ul> */}
+                  </ul> 
                   </div>
                   <div className="form-comments">
                     <div className="title-box-2">
@@ -218,7 +218,7 @@ export default class Blog extends React.Component {
                         </div>
                       </div>
                     </form>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="col-md-4">
                   <div className="widget-sidebar sidebar-search">
@@ -294,7 +294,6 @@ export default class Blog extends React.Component {
               </div>
             </div>
           </section>
-
           <section
             className="paralax-mf footer-paralax bg-image sect-mt4 route"
             style={{
@@ -307,7 +306,6 @@ export default class Blog extends React.Component {
         </>
       );
     } else {
-      //   console.log(this.state.Maqola.error);
       return (
         <>
           <p>Bunday maqola mavjud emas</p>
